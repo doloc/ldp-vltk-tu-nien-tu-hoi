@@ -25,3 +25,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.btn-image:hover {
+  cursor: pointer; 
+  filter: brightness(1.1);
+}
