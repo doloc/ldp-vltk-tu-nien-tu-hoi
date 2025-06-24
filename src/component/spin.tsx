@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "./popup";
+import { motion } from "framer-motion";
 
 const Spin = () => {
   type CustomStyleProperties = {
@@ -20,6 +21,12 @@ const Spin = () => {
   const [isRolling, setIsRolling] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupContent, setPopupContent] = useState<string[]>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure component only runs on client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const LIGHT_DURATION = 800; // Duration của box-light.gif
   const OPEN_DURATION = 1100; // Duration của box-open.gif
@@ -41,7 +48,7 @@ const Spin = () => {
   };
 
   const rollOne = () => {
-    if (isRolling) return;
+    if (isRolling || !isClient) return;
     setIsRolling(true);
     
     const randomIndex = Math.floor(Math.random() * 12);
@@ -75,7 +82,7 @@ const Spin = () => {
   };
 
   const rollTen = () => {
-    if (isRolling) return;
+    if (isRolling || !isClient) return;
     setIsRolling(true);
 
     const randomIndexes: number[] = [];
@@ -124,16 +131,58 @@ const Spin = () => {
     });
   };
 
-  return (
-    <div className="relative overflow-x-hidden w-full flex flex-col items-center bg-cover bg-center bg-no-repeat aspect-[480/283] mb:aspect-[640/840] mb:bg-[image:var(--bg-mobile-url)] bg-[image:var(--bg-pc-url)]" 
-    style={{'--bg-mobile-url': `url(/images/mb-spin-bg.jpg)`, '--bg-pc-url': `url(/images/pc-spin-bg.jpg)`} as CustomStyleProperties}>
-      <img src="/images/spin-title.png" alt="" className="-mt-[3%] mb:-mt-[5%] w-[43%] mb:w-[95%]" />
-      <div className="-mt-[0.5%] relative w-full flex justify-center items-center">
-        <img src="/images/icon-thele.png" alt="" className="w-[15%] mb:w-[30%] -mr-[5%] btn-image" />
-        <img src="/images/icon-nhanluot.png" alt="" className="z-10 w-[10%] mb:w-[22%]" />
-        <img src="/images/icon-lichsu.png" alt="" className="w-[15%] mb:w-[30%] -ml-[4%] btn-image" />
-      </div>
+  // Don't render interactive elements until client-side
+  if (!isClient) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative overflow-x-hidden w-full flex flex-col items-center bg-cover bg-center bg-no-repeat aspect-[480/283] mb:aspect-[640/840] mb:bg-[image:var(--bg-mobile-url)] bg-[image:var(--bg-pc-url)]"
+        style={{'--bg-mobile-url': `url(/images/mb-spin-bg.jpg)`, '--bg-pc-url': `url(/images/pc-spin-bg.jpg)`} as CustomStyleProperties}
+      >
+        <motion.img src="/images/spin-title.png" alt="" className="-mt-[3%] mb:-mt-[5%] w-[43%] mb:w-[95%]" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.6 }} />
+        <div className="-mt-[0.5%] relative w-full flex justify-center items-center">
+          <motion.img src="/images/icon-thele.png" alt="" className="w-[15%] mb:w-[30%] -mr-[5%] btn-image" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} />
+          <img src="/images/icon-nhanluot.png" alt="" className="z-10 w-[10%] mb:w-[22%]" />
+          <motion.img src="/images/icon-lichsu.png" alt="" className="w-[15%] mb:w-[30%] -ml-[4%] btn-image" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.4, duration: 0.5 }} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} />
+        </div>
+        <div className="z-50 -mt-[0.5%] relative w-[40%] mb:w-[85%] aspect-[1/1] overflow-hidden flex justify-center items-center">
+          <div className="w-full grid grid-cols-4 grid-rows-4 gap-[1%] aspect-square inset-0 bg-gray-100/15 p-[2%]">
+            {boxes.map((box, index) => (
+              <div key={index} style={{ gridRow: positions[index].row, gridColumn: positions[index].col }} className="w-full h-full">
+                <img src={box} alt={`box-${index}`} className="w-full h-auto object-contain" />
+              </div>
+            ))}
+          </div>
+          <div className="absolute w-[50%] h-[50%] flex flex-col justify-center items-center gap-[2%]">
+            <div className="w-3/4">
+              <img src="/images/btn-draw-1.png" alt="Draw 1" className="w-full h-auto opacity-50" />
+            </div>
+            <div className="w-3/4">
+              <img src="/images/btn-draw-10.png" alt="Draw 10" className="w-full h-auto opacity-50"/>
+            </div>
+            <p className="text-white text-center text-[1.2vw] font-semibold">*Quyết định của BTC là quyết định cuối cùng</p>
+          </div>       
+        </div>
+      </motion.div>
+    );
+  }
 
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="relative overflow-x-hidden w-full flex flex-col items-center bg-cover bg-center bg-no-repeat aspect-[480/283] mb:aspect-[640/840] mb:bg-[image:var(--bg-mobile-url)] bg-[image:var(--bg-pc-url)]"
+      style={{'--bg-mobile-url': `url(/images/mb-spin-bg.jpg)`, '--bg-pc-url': `url(/images/pc-spin-bg.jpg)`} as CustomStyleProperties}
+    >
+      <motion.img src="/images/spin-title.png" alt="" className="-mt-[3%] mb:-mt-[5%] w-[43%] mb:w-[95%]" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.6 }} />
+      <div className="-mt-[0.5%] relative w-full flex justify-center items-center">
+        <motion.img src="/images/icon-thele.png" alt="" className="w-[15%] mb:w-[30%] -mr-[5%] btn-image" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} />
+        <img src="/images/icon-nhanluot.png" alt="" className="z-10 w-[10%] mb:w-[22%]" />
+        <motion.img src="/images/icon-lichsu.png" alt="" className="w-[15%] mb:w-[30%] -ml-[4%] btn-image" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.4, duration: 0.5 }} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} />
+      </div>
       <div className="z-50 -mt-[0.5%] relative w-[40%] mb:w-[85%] aspect-[1/1] overflow-hidden flex justify-center items-center">
         <div className="w-full grid grid-cols-4 grid-rows-4 gap-[1%] aspect-square inset-0 bg-gray-100/15 p-[2%]">
           {boxes.map((box, index) => (
@@ -147,13 +196,11 @@ const Spin = () => {
             <img src="/images/btn-draw-1.png" alt="Draw 1" className="w-full h-auto transition-transform duration-200 group-hover:scale-110" />
           </button>
           <button className="w-3/4 group disabled:opacity-50 disabled:cursor-not-allowed" onClick={rollTen} disabled={isRolling}>
-            <img src="/images/btn-draw-10.png" alt="Draw 10" className="w-full h-auto transition-transform duration-200 group-hover:scale-110" />
+            <img src="/images/btn-draw-10.png" alt="Draw 10" className="w-full h-auto transition-transform duration-200 group-hover:scale-110"/>
           </button>
-        
           <p className="text-white text-center text-[1.2vw] font-semibold">*Quyết định của BTC là quyết định cuối cùng</p>
         </div>       
       </div>
-
       <Popup
         title="Chúc mừng nhận thưởng"
         isOpen={popupOpen}
@@ -200,14 +247,12 @@ const Spin = () => {
                     className="w-full"
                   />
                 ))}
-                {popupContent.length === 9 && <div></div>}
               </div>
             </div>
           )}
         </div>
       </Popup>
-      
-    </div>
+    </motion.div>
   );
 };
 

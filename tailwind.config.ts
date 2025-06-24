@@ -29,11 +29,19 @@ const config: Config = {
           '50%': { transform: 'translateX(5px)' },
           '75%': { transform: 'translateX(-5px)' },
         },
+        swing: {
+          '0%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(3deg)' },
+          '50%': { transform: 'rotate(-2deg)' },
+          '75%': { transform: 'rotate(1deg)' },
+          '100%': { transform: 'rotate(0deg)' }
+        },
       },
       animation: {
         'fade': 'fadeIn 0.3s ease-out',
         'shake': 'shake 0.3s ease-in-out',
         'zoom-in': 'zoomIn 0.3s type-spring',
+        'swing': 'swing 6s ease-in-out infinite',
       },
       colors: {
         background: "var(--background)",

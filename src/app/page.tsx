@@ -1,3 +1,4 @@
+import SideBar from "@/component/side-bar";
 import Accumulate from "../component/accumulate";
 import Birthday from "../component/birthday";
 import Checkin from "../component/checkin";
@@ -8,6 +9,7 @@ import Spin from "../component/spin";
 export default function LandingPage() {
   return (
     <div>
+      <SideBar />
       <Hero />
       <Checkin />
       <Spin />

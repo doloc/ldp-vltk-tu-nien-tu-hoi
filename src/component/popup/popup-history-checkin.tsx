@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Popup from "../popup"
 import { MW } from "@/services/api";
 import { CheckIn } from "@/types/leader-board";
@@ -28,14 +28,22 @@ const PopupHistoryCheckin:React.FC<{
     isOpen: boolean;
     onClose: () => void;
 }> = ({isOpen, onClose}) => {
+    const [isClient, setIsClient] = useState(false);
+
+    // Ensure component only runs on client side
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const getHisCheckin = async () => {
         const res = await MW.getHisCheckin();
     }
 
     useEffect(() => {
-        getHisCheckin()
-    }, [])
+        if (isClient) {
+            getHisCheckin()
+        }
+    }, [isClient])
 
     return (
         <Popup
@@ -55,7 +63,7 @@ const PopupHistoryCheckin:React.FC<{
                 <div className="mt-[1%] w-[85%] max-h-[75vw] overflow-scroll flex flex-col justify-center items-center">
                     {data.map((val, idx) => (
                         <div key={idx} className="w-[85%] grid grid-cols-2 gap-[1.5vw] text-[#AA5C47]">
-                            <p className="text-center">{formatTimestamp(val.time)}</p>
+                            <p className="text-center">{isClient ? formatTimestamp(val.time) : 'Loading...'}</p>
                             <p className="text-center">{val.desc}</p>
                         </div>
                     ))}
