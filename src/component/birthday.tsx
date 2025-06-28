@@ -1,11 +1,14 @@
 'use client'
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const Birthday = () => {
   type CustomStyleProperties = {
     [key: string]: string | number;
   };
+
+  const router = useRouter();
 
   return (
     <motion.div
@@ -29,12 +32,14 @@ const Birthday = () => {
         </div>
         <div className="w-[35%] animate-swing" style={{ animationDelay: '0.5s', transformOrigin: 'top center' }}>
           <div className="w-full mb:scale-[1.7] flex justify-center bg-cover bg-center bg-no-repeat aspect-[395/523] bg-[image:var(--bg-pc-url)] z-10" style={{'--bg-pc-url': `url(/images/binhchonbanghoi-bg.png)`} as CustomStyleProperties}>
-            <motion.img src="/images/btn-thamgia.png" alt="" className="mt-[57%] -ml-[5%] object-contain w-[30%] h-auto btn-image" whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }} />
+            <motion.img src="/images/btn-thamgia.png" alt="" className="mt-[57%] -ml-[5%] object-contain w-[30%] h-auto btn-image" whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }}
+            onClick={() =>router.push("/bang-hoi")} />
           </div>
         </div>
         <div className="w-[32.5%] -ml-[8%] mb:ml-0 animate-swing" style={{ animationDelay: '1s', transformOrigin: 'top center' }}>
           <div className="w-full mb:scale-[1.7] flex justify-center bg-cover bg-center bg-no-repeat aspect-[660/881] bg-[image:var(--bg-pc-url)]" style={{'--bg-pc-url': `url(/images/binhchonminhchu-bg.png)`} as CustomStyleProperties}>
-            <motion.img src="/images/btn-thamgia.png" alt="" className="mt-[54%] -ml-[5%] object-contain w-[30%] h-auto btn-image" whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.8, duration: 0.5 }} />
+            <motion.img src="/images/btn-thamgia.png" alt="" className="mt-[54%] -ml-[5%] object-contain w-[30%] h-auto btn-image" whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.8, duration: 0.5 }} 
+            onClick={() => router.push("/bang-hoi")} />
           </div>
         </div>
       </div>

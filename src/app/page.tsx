@@ -9,7 +9,6 @@ import Spin from "../component/spin";
 export default function LandingPage() {
   return (
     <div>
-      <SideBar />
       <Hero />
       <Checkin />
       <Spin />

@@ -52,3 +52,13 @@ body {
   cursor: pointer; 
   filter: brightness(1.1);
 }
+
+.hide-scroll {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

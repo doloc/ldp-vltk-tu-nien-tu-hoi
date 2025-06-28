@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import SideBar from "@/component/side-bar";
 
 const fzHbrGame = localFont({
   src: "./fonts/FzHBRGame.ttf",
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${utmCafeta.variable} ${fzHbrGame.variable}`} style={{ fontFamily: 'var(--font-utm-cafeta)' }}>
+        <SideBar />
         {children}
       </body>
     </html>
