@@ -44,7 +44,7 @@ const TabContent:FC<{activeIdx: number, onClick: (index: number)=> void, listTab
 
   return (
     <motion.div 
-      className="w-full flex justify-between items-center text-[1.5vw]"
+      className="w-full flex mb:flex-col mb:gap-[2vw] justify-between items-center text-[1.5vw] mb:text-[3.5vw]"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -52,7 +52,7 @@ const TabContent:FC<{activeIdx: number, onClick: (index: number)=> void, listTab
       {listTab.map((val, idx) => (
         <motion.div 
           key={idx} 
-          className={`w-[30%] bg-cover bg-center bg-no-repeat aspect-[366/77] bg-[url('/images/bang-hoi/pc-tab-bg.png')] flex justify-center items-center cursor-pointer select-none ${activeIdx !== idx ? "text-[#712511]" : "text-[#9F2218]"}`}
+          className={`w-[30%] mb:w-[35%] bg-cover bg-center bg-no-repeat aspect-[366/77] bg-[url('/images/bang-hoi/pc-tab-bg.png')] flex justify-center items-center cursor-pointer select-none ${activeIdx !== idx ? "text-[#712511]" : "text-[#9F2218]"}`}
           variants={tabVariants}
           animate={activeIdx === idx ? "active" : "inactive"}
           custom={activeIdx === idx}

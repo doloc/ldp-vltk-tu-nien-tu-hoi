@@ -33,13 +33,13 @@ const Hero = () => {
       </motion.div>
 
       <motion.div
-        className="pc:hidden tb:hidden relative w-full h-[17%] bg-cover bg-center bg-no-repeat bg-[image:url(/images/mb-header-bg.png)]"
+        className="pc:hidden tb:hidden relative w-full aspect-[32/7] bg-cover bg-center bg-no-repeat bg-[image:url(/images/mb-header-bg.png)]"
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.7, type: "spring" }}
       >
         <motion.img className="absolute top-[4%] left-[4%] w-[18%]" src="/images/logo-zagoo.png" alt="" initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.5, duration: 0.5 }} />
-        <motion.img className="absolute w-[25%] top-[13%] left-[24%] btn-img" src="/images/btn-choingay.png" alt="" onClick={() =>  router.push("https://zalo.vltkh5.zing.vn/play-game")}
+        <motion.img className="absolute w-[25%] top-[13%] left-[24%] btn-image" src="/images/btn-choingay.png" alt="" onClick={() =>  router.push("https://zalo.vltkh5.zing.vn/play-game")}
           whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }} />
         <motion.img className="absolute w-[25%] top-[13%] right-[21%] btn-image" src="/images/btn-napthe.png" alt="" onClick={() =>  router.push("/")}
           whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }} />

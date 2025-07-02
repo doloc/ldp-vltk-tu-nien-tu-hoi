@@ -141,16 +141,16 @@ const Ranking = () => {
   return (
     <div className="w-full h-auto flex flex-col items-center">
       {/* Custom Select Dropdown */}
-      <div className="relative w-[20%] h-[4vh]">
+      <div className="relative mb:absolute mb:-top-[15%] mb:right-[4%] w-[20%] mb:w-[50%]">
         <div 
-          className="w-full h-full bg-[#F4F4F4] border-2 border-[#B8956A] rounded-md flex items-center justify-between px-3 cursor-pointer shadow-md hover:shadow-lg transition-shadow"
+          className="w-full h-full bg-[#F4F4F4] border-2 border-[#B8956A] rounded-md flex items-center justify-between mb:justify-center mb:gap-[1vw] px-3 cursor-pointer shadow-md hover:shadow-lg transition-shadow"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <span className="text-[1.5vw] text-[#B53925] font-semibold">
+          <span className="text-[1.5vw] mb:text-[3.5vw] text-[#B53925] font-semibold">
             {selectedTable ? `Bảng ${selectedTable}` : "1"}
           </span>
           <svg 
-            className={`w-[1.5vw] h-[1.5vw] text-[#B53925] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+            className={`w-[1.5vw] h-[1.5vw] mb:w-[3.5vw] mb:h-[3.5vw] text-[#B53925] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -164,7 +164,7 @@ const Ranking = () => {
             {tableOptions.map((option) => (
               <div
                 key={option.value}
-                className="px-3 py-2 text-[1.4vw] text-[#B53925] font-semibold hover:bg-[#F4E4C1] cursor-pointer border-b last:border-b-0 border-[#E8D4A8]"
+                className="px-3 py-2 text-[1.4vw] mb:text-[3.5vw] text-[#B53925] font-semibold hover:bg-[#F4E4C1] cursor-pointer border-b last:border-b-0 border-[#E8D4A8]"
                 onClick={() => handleTableSelect(option.value)}
               >
                 {option.label}
@@ -174,18 +174,18 @@ const Ranking = () => {
         )}
       </div>
 
-      <p className="absolute top-[9%] w-full text-center text-[1.5vw] text-[#832111] font-semibold">Mỗi bảng, 05 Bang Hội có điểm bình chọn cao nhất sẽ tiến vào Vòng 2</p>
-      <div className="absolute top-[15%] w-[90%] h-[80%] flex flex-col items-center">
+      <p className="absolute top-[9%] w-full text-center text-[1.5vw] mb:text-[3.5vw] text-[#832111] font-semibold">Mỗi bảng, 05 Bang Hội có điểm bình chọn cao nhất sẽ tiến vào Vòng 2</p>
+      <div className="absolute top-[15%] w-[90%] mb:w-[97%] h-[80%] mb:h-[70%] flex flex-col items-center">
         <div className="w-full h-full">
-          <div className="my-[1%] grid grid-cols-4 text-[2vw] text-[#832111] font-semibold">
+          <div className="my-[1%] grid grid-cols-4 text-[2vw] mb:text-[3.5vw] text-[#832111] font-semibold">
               <p className="text-center">Hạng</p>
               <p className="text-center">Bang Hội</p>
               <p className="text-center">Máy Chủ</p>
               <p className="text-center">Tổng Điểm Bình Chọn</p>
           </div>
-          <div className="w-full max-h-[50vh] overflow-y-scroll overflow-x-hidden hide-scroll">
+          <div className="w-full max-h-[50vh] mb:max-h-[22vh] overflow-y-scroll overflow-x-hidden hide-scroll">
               {filteredData.map((item, idx) => (
-                  <div key={idx} className={`grid grid-cols-4 text-[1.7vw] text-[#613931] font-semibold py-1 ${idx % 2 == 0 ? "bg-[#FFF5D6]" : ""}`}>
+                  <div key={idx} className={`grid grid-cols-4 text-[1.7vw] mb:text-[3.5vw] text-[#613931] font-semibold py-1 ${idx % 2 == 0 ? "bg-[#FFF5D6]" : ""}`}>
                       <p className="text-center">{item.rank}</p>
                       <p className="text-center">{item.guild}</p>
                       <p className="text-center">{item.server}</p>

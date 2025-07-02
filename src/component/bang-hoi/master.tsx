@@ -78,14 +78,14 @@ const Master = () => {
 
   return (
     <div 
-      className="relative overflow-hidden w-full flex flex-col items-center bg-cover bg-center bg-no-repeat aspect-[960/589] mb:aspect-[640/1060] mb:bg-[image:var(--bg-mobile-url)] bg-[image:var(--bg-pc-url)]"
-      style={{'--bg-mobile-url': `url(/images/mb-hero-bg.jpg)`, '--bg-pc-url': `url(/images/bang-hoi/pc-minhchu-bg.jpg)`} as CustomStyleProperties}
+      className="relative overflow-hidden w-full flex flex-col items-center bg-cover bg-center bg-no-repeat aspect-[960/589] mb:aspect-[640/912] mb:bg-[image:var(--bg-mobile-url)] bg-[image:var(--bg-pc-url)]"
+      style={{'--bg-mobile-url': `url(/images/bang-hoi/mb-minhchu-bg.jpg)`, '--bg-pc-url': `url(/images/bang-hoi/pc-minhchu-bg.jpg)`} as CustomStyleProperties}
     >
       {/* Title with elegant entrance */}
       <motion.img 
         src="/images/bang-hoi/title-minhchu.png" 
         alt="" 
-        className="-mt-[2%] w-[50%]"
+        className="-mt-[2%] mb:mt-[-4%] w-[50%] mb:w-[90%]"
         variants={titleVariants}
         initial="hidden"
         animate="visible"
@@ -93,7 +93,7 @@ const Master = () => {
       
       {/* Tab navigation with smooth slide-in */}
       <motion.div 
-        className="w-2/3 mt-[1%]"
+        className="w-2/3 mb:w-full mt-[1%]"
         variants={itemVariants}
         initial="hidden"
         animate="visible"
@@ -107,15 +107,16 @@ const Master = () => {
       
       {/* Main content container */}
       <motion.div 
-        className="relative mt-[1%] w-[70%] flex flex-col items-center bg-cover bg-center bg-no-repeat aspect-[120/73] mb:aspect-[640/1060] mb:bg-[image:var(--bg-mobile-url)] bg-[image:var(--bg-pc-url)]"
-        style={{'--bg-mobile-url': `url(/images/mb-hero-bg.jpg)`, '--bg-pc-url': `url(/images/bang-hoi/pc-shape-bg.png)`} as CustomStyleProperties}
+        className="relative mt-[1%] mb:mt-[22%] w-[70%] mb:w-full flex flex-col items-center bg-cover bg-center bg-no-repeat aspect-[120/73] mb:aspect-[640/486] mb:bg-[image:var(--bg-mobile-url)] bg-[image:var(--bg-pc-url)]"
+        style={{'--bg-mobile-url': `url(/images/bang-hoi/mb-shape-bg.png)`, '--bg-pc-url': `url(/images/bang-hoi/pc-shape-bg.png)`} as CustomStyleProperties}
         variants={itemVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Right side buttons with staggered animation */}
+        {/* pc */}
         <motion.div 
-          className="absolute top-[15%] -right-[9%] w-[12%] flex flex-col items-start gap-2"
+          className="mb:hidden absolute top-[15%] -right-[9%] w-[12%] flex flex-col items-start gap-2"
           initial="hidden"
           animate="visible"
         >
@@ -129,6 +130,34 @@ const Master = () => {
               src={button.src}
               alt=""
               className={`${button.width} btn-image cursor-pointer`}
+              variants={sideButtonVariants}
+              custom={index}
+              whileHover={{
+                scale: 1.05,
+                y: -3,
+                transition: { duration: 0.2, ease: "easeOut" }
+              }}
+              whileTap={{ scale: 0.98 }}
+            />
+          ))}
+        </motion.div>
+
+        {/* mobile */}
+        <motion.div 
+          className="pc:hidden tb:hidden absolute -top-[23%] left-[5%] h-[23%] flex flex-row-reverse items-end gap-[1%]"
+          initial="hidden"
+          animate="visible"
+        >
+          {[
+            { src: "/images/bang-hoi/btn-thele.png", height: "h-[85%]" },
+            { src: "/images/bang-hoi/btn-nhanluot.png", height: "h-[85%]" },
+            { src: "/images/bang-hoi/btn-phanthuong.png", height: "h-[100%]" }
+          ].map((button, index) => (
+            <motion.img
+              key={index}
+              src={button.src}
+              alt=""
+              className={`${button.height} btn-image cursor-pointer`}
               variants={sideButtonVariants}
               custom={index}
               whileHover={{

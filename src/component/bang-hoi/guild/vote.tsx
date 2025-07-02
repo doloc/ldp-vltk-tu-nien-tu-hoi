@@ -109,16 +109,16 @@ const Vote = () => {
   return (
     <div className="w-full h-auto flex flex-col items-center">
       {/* Custom Select Dropdown */}
-      <div className="relative w-[20%] h-[4vh]">
+      <div className="relative mb:absolute mb:-top-[15%] mb:right-[4%] w-[20%] mb:w-[50%]">
         <div 
-          className="w-full h-full bg-[#F4F4F4] border-2 border-[#B8956A] rounded-md flex items-center justify-between px-3 cursor-pointer shadow-md hover:shadow-lg transition-shadow"
+          className="w-full h-full bg-[#F4F4F4] border-2 border-[#B8956A] rounded-md flex items-center justify-between mb:justify-center mb:gap-[1vw] px-3 cursor-pointer shadow-md hover:shadow-lg transition-shadow"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <span className="text-[1.5vw] text-[#B53925] font-semibold">
+          <span className="text-[1.5vw] mb:text-[3.5vw] text-[#B53925] font-semibold">
             {selectedTable ? `Bảng ${selectedTable}` : "Chọn bảng"}
           </span>
           <svg 
-            className={`w-[1.5vw] h-[1.5vw] text-[#B53925] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+            className={`w-[1.5vw] h-[1.5vw] mb:w-[3.5vw] mb:h-[3.5vw] text-[#B53925] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -132,7 +132,7 @@ const Vote = () => {
             {tableOptions.map((option) => (
               <div
                 key={option.value}
-                className="px-3 py-2 text-[1.4vw] text-[#B53925] font-semibold hover:bg-[#F4E4C1] cursor-pointer border-b last:border-b-0 border-[#E8D4A8]"
+                className="px-3 py-2 text-[1.4vw] mb:text-[3.5vw] text-[#B53925] font-semibold hover:bg-[#F4E4C1] cursor-pointer border-b last:border-b-0 border-[#E8D4A8]"
                 onClick={() => handleTableSelect(option.value)}
               >
                 {option.label}
@@ -142,17 +142,17 @@ const Vote = () => {
         )}
       </div>
 
-      <div className="absolute top-[8%] w-[90%] h-[80%] flex flex-col items-center">
+      <div className="absolute top-[8%] w-[90%] mb:w-[97%] h-[80%] mb:h-[70%] flex flex-col items-center">
         <div className="w-full h-full">
-          <div className="my-[1%] grid grid-cols-4 text-[2vw] text-[#832111] font-semibold">
+          <div className="my-[1%] grid grid-cols-4 text-[2vw] mb:text-[3.5vw] text-[#832111] font-semibold">
               <p className="text-center">Bang hội</p>
               <p className="text-center">Máy chủ</p>
               <p className="text-center">Điểm</p>
               <p className="text-center">Bình chọn</p>
           </div>
-          <div className="w-full max-h-[50vh] overflow-y-scroll overflow-x-hidden hide-scroll">
+          <div className="w-full max-h-[50vh] mb:max-h-[22vh] overflow-y-scroll overflow-x-hidden hide-scroll">
               {currentData.map((item, idx) => (
-                  <div key={startIndex + idx} className={`grid grid-cols-4 text-[1.7vw] text-[#613931] font-semibold py-1 ${idx % 2 == 0 ? "bg-[#FFF5D6]" : ""}`}>
+                  <div key={startIndex + idx} className={`grid grid-cols-4 text-[1.7vw] mb:text-[3.5vw] text-[#613931] font-semibold py-1 ${idx % 2 == 0 ? "bg-[#FFF5D6]" : ""}`}>
                       <p className="text-center">{item.name}</p>
                       <p className="text-center">{item.server}</p>
                       <p className="text-center">{formatNumber(item.score)}</p>
@@ -165,11 +165,11 @@ const Vote = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-[12%] w-full h-[7vh] flex justify-center items-end gap-[1%] text-[1.7vw] text-[#872819]">
+      <div className="absolute bottom-[12%] w-full h-[7vh] flex justify-center items-end gap-[1%] text-[1.7vw] mb:text-[3.5vw] text-[#872819]">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <p 
             key={page}
-            className={`cursor-pointer ${page === currentPage ? 'text-[#E72909] text-[2vw]' : ''}`}
+            className={`cursor-pointer ${page === currentPage ? 'text-[#E72909] text-[2vw] mb:text-[4vw]' : ''}`}
             onClick={() => handlePageChange(page)}
           >
             {page}
